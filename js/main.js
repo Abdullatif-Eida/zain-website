@@ -63,6 +63,16 @@
     return false;
   });
 
+  // Debug portal shortcut (MVP only)
+  var debugParams = new URLSearchParams(window.location.search);
+  if (debugParams.get("debug") === "1") {
+    var debugLink = document.createElement("a");
+    debugLink.href = "portal.html?debug=1";
+    debugLink.className = "debug-portal-link";
+    debugLink.innerText = "بوابة الطالب (Debug)";
+    document.body.appendChild(debugLink);
+  }
+
   if ($.fn.owlCarousel) {
     // Header carousel
     $(".header-carousel").owlCarousel({

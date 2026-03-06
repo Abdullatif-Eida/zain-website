@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="utf-8">
+    <title>بوابة الطالب | أكاديمية زين</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="بوابة الطالب - نموذج أولي MVP لعرض الدروس الحالية والقادمة والتسجيلات ومنطقة إنشاء المدرسة.">
+
+    <script>
+        (function () {
+            var params = new URLSearchParams(window.location.search);
+            if (params.get('debug') !== '1') {
+                window.location.replace('index.html');
+            }
+        })();
+    </script>
+
+    <link href="img/logo.jpg?v=20260306" rel="icon" type="image/jpeg">
+    <link href="img/logo.jpg?v=20260306" rel="shortcut icon" type="image/jpeg">
+    <link href="img/logo.jpg?v=20260306" rel="apple-touch-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<script src="//code.tidio.co/qomb9umgqkujldr86a8qac1tllfovdko.js" async></script>
+<body>
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm sticky-top p-0 modern-navbar">
+        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <img class="logo" src="img/logo.jpg" alt="شعار أكاديمية زين">
+            <h2 class="m-0 text-primary">بوابة الطالب</h2>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="portal.html?debug=1" class="nav-item nav-link active">الرئيسية</a>
+                <a href="#lessons" class="nav-item nav-link">دروسي</a>
+                <a href="#recordings" class="nav-item nav-link">التسجيلات</a>
+                <a href="#school-zone" class="nav-item nav-link">منطقة المدرسة</a>
+            </div>
+            <a href="index.html" class="btn btn-outline-primary py-3 px-4 d-none d-lg-block">العودة للموقع</a>
+        </div>
+    </nav>
+
+    <header class="portal-hero py-5">
+        <div class="container">
+            <div class="portal-debug-badge mb-3">وضع تجريبي MVP - Debug Mode</div>
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="portal-title mb-2">مرحباً، أحمد محمد</h1>
+                    <p class="portal-subtitle mb-4">هذه بوابتك التعليمية لعرض الدروس الحالية، المواعيد القادمة، التسجيلات، وخدمات المدرسة.</p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="portal-chip"><i class="bi bi-calendar2-week"></i> الأسبوع الدراسي الحالي</span>
+                        <span class="portal-chip"><i class="bi bi-mortarboard"></i> الصف: السادس</span>
+                        <span class="portal-chip"><i class="bi bi-translate"></i> المسار: تركي + رياضيات</span>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="portal-student-card">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <img src="img/logo.jpg" alt="شعار زين" class="portal-avatar">
+                            <div>
+                                <h6 class="mb-0">رقم الطالب: ZA-1042</h6>
+                                <small>آخر تسجيل دخول: اليوم 09:25</small>
+                            </div>
+                        </div>
+                        <div class="portal-progress-wrap">
+                            <div class="d-flex justify-content-between mb-1">
+                                <small>إنجاز هذا الشهر</small>
+                                <small>72%</small>
+                            </div>
+                            <div class="progress" style="height:8px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width:72%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-3 mt-3">
+                <div class="col-6 col-md-3">
+                    <div class="portal-kpi">
+                        <h3>4</h3>
+                        <p>دروس اليوم</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="portal-kpi">
+                        <h3>9</h3>
+                        <p>مواعيد قادمة</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="portal-kpi">
+                        <h3>18</h3>
+                        <p>تسجيلات متاحة</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="portal-kpi">
+                        <h3>96%</h3>
+                        <p>نسبة الحضور</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="lessons" class="container-xxl py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+                <h3 class="m-0">دروسي الحالية</h3>
+                <button class="btn btn-outline-primary btn-sm">عرض الجدول الكامل</button>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="portal-lesson-card active-now">
+                        <div class="portal-lesson-head">
+                            <span class="status-pill live">مباشر الآن</span>
+                            <small>10:00 - 11:00</small>
+                        </div>
+                        <h5>اللغة التركية - المحادثة</h5>
+                        <p>معلمة: الآنسة ياسمين • غرفة: TR-02</p>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <button class="btn btn-primary btn-sm">الانضمام للحصة</button>
+                            <button class="btn btn-outline-primary btn-sm">تحميل الواجب</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="portal-lesson-card">
+                        <div class="portal-lesson-head">
+                            <span class="status-pill">بعد 30 دقيقة</span>
+                            <small>11:30 - 12:30</small>
+                        </div>
+                        <h5>الرياضيات - الجبر</h5>
+                        <p>معلمة: الآنسة ريم • غرفة: MATH-1</p>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <button class="btn btn-outline-primary btn-sm">إضافة تذكير</button>
+                            <button class="btn btn-outline-primary btn-sm">عرض التفاصيل</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container-xxl pb-5">
+        <div class="container">
+            <h3 class="mb-4">الدروس القادمة</h3>
+            <div class="portal-table-wrap">
+                <div class="table-responsive">
+                    <table class="table align-middle portal-table mb-0">
+                        <thead>
+                            <tr>
+                                <th>اليوم</th>
+                                <th>المادة</th>
+                                <th>الوقت</th>
+                                <th>المعلم/ة</th>
+                                <th>الحالة</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>الاثنين</td>
+                                <td>الإنجليزية - محادثة</td>
+                                <td>15:00 - 16:00</td>
+                                <td>الأستاذ شيماء</td>
+                                <td><span class="status-pill soft">مؤكد</span></td>
+                            </tr>
+                            <tr>
+                                <td>الثلاثاء</td>
+                                <td>العلوم - الحواس الخمسة</td>
+                                <td>17:00 - 18:00</td>
+                                <td>الأستاذة نور</td>
+                                <td><span class="status-pill soft">مؤكد</span></td>
+                            </tr>
+                            <tr>
+                                <td>الأربعاء</td>
+                                <td>قرآن كريم - جزء رشيدي</td>
+                                <td>18:30 - 19:15</td>
+                                <td>الأستاذة آية</td>
+                                <td><span class="status-pill soft">مؤكد</span></td>
+                            </tr>
+                            <tr>
+                                <td>الخميس</td>
+                                <td>برمجة أطفال - Scratch</td>
+                                <td>16:00 - 17:00</td>
+                                <td>الأستاذ عمر</td>
+                                <td><span class="status-pill soft">مؤكد</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recordings" class="container-xxl pb-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+                <h3 class="m-0">التسجيلات السابقة</h3>
+                <button class="btn btn-outline-primary btn-sm">كل التسجيلات</button>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <article class="recording-card">
+                        <img src="img/testimonial-1.jpg" alt="تسجيل درس">
+                        <div class="p-3">
+                            <h6>اللغة التركية - الحصة 12</h6>
+                            <p class="mb-2">مدة الفيديو: 58 دقيقة</p>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-primary btn-sm">تشغيل</button>
+                                <button class="btn btn-outline-primary btn-sm">الملاحظات</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <article class="recording-card">
+                        <img src="img/testimonial-2.jpg" alt="تسجيل درس">
+                        <div class="p-3">
+                            <h6>الرياضيات - الكسور</h6>
+                            <p class="mb-2">مدة الفيديو: 47 دقيقة</p>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-primary btn-sm">تشغيل</button>
+                                <button class="btn btn-outline-primary btn-sm">الملاحظات</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <article class="recording-card">
+                        <img src="img/testimonial-3.jpg" alt="تسجيل درس">
+                        <div class="p-3">
+                            <h6>العلوم - تجارب مبسطة</h6>
+                            <p class="mb-2">مدة الفيديو: 51 دقيقة</p>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-primary btn-sm">تشغيل</button>
+                                <button class="btn btn-outline-primary btn-sm">الملاحظات</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="school-zone" class="container-xxl pb-5">
+        <div class="container">
+            <h3 class="mb-4">منطقة إنشاء المدرسة (School Creator Zone)</h3>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="zone-card">
+                        <i class="bi bi-building"></i>
+                        <h6>إنشاء مدرسة جديدة</h6>
+                        <p>بدء إعداد مدرسة جديدة مع معلومات الهوية والشعار.</p>
+                        <button class="btn btn-outline-primary btn-sm">فتح</button>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="zone-card">
+                        <i class="bi bi-people"></i>
+                        <h6>إدارة الصفوف والطلاب</h6>
+                        <p>إنشاء الصفوف، إضافة الطلاب، وتنظيم المجموعات.</p>
+                        <button class="btn btn-outline-primary btn-sm">فتح</button>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="zone-card">
+                        <i class="bi bi-collection-play"></i>
+                        <h6>مكتبة المحتوى</h6>
+                        <p>رفع ملفات الدروس، الواجبات، والفيديوهات التعليمية.</p>
+                        <button class="btn btn-outline-primary btn-sm">فتح</button>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="zone-card">
+                        <i class="bi bi-bar-chart"></i>
+                        <h6>تقارير الأداء</h6>
+                        <p>عرض الإحصائيات ونسب الحضور والتقدم حسب الصف.</p>
+                        <button class="btn btn-outline-primary btn-sm">فتح</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container-xxl pb-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="portal-panel">
+                        <h5 class="mb-3">إشعاراتي</h5>
+                        <ul class="portal-list mb-0">
+                            <li><i class="bi bi-bell-fill"></i> تم رفع تسجيل حصة اللغة التركية.</li>
+                            <li><i class="bi bi-bell-fill"></i> موعد اختبار قصير يوم الثلاثاء الساعة 17:00.</li>
+                            <li><i class="bi bi-bell-fill"></i> تم تحديث الواجب الأسبوعي لمادة الرياضيات.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="portal-panel">
+                        <h5 class="mb-3">المهام السريعة</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            <button class="btn btn-primary btn-sm">رفع واجب</button>
+                            <button class="btn btn-outline-primary btn-sm">طلب إعادة شرح</button>
+                            <button class="btn btn-outline-primary btn-sm">إرسال رسالة للإدارة</button>
+                            <button class="btn btn-outline-primary btn-sm">حجز درس إضافي</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-4">
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-6">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <img src="img/logo.jpg" alt="شعار أكاديمية زين" style="width:60px;height:60px;border-radius:12px;background:#fff;padding:4px;">
+                        <h4 class="text-white m-0">أكاديمية زين - بوابة الطالب</h4>
+                    </div>
+                    <p class="mb-0">نموذج تجريبي ثابت للعرض الداخلي على مدير المشروع.</p>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <a href="portal.html?debug=1" class="btn btn-outline-light btn-sm">تحديث الصفحة</a>
+                    <a href="index.html" class="btn btn-light btn-sm">الخروج من البوابة</a>
+                </div>
+            </div>
+            <div class="footer-credit text-center mt-4 pt-3">
+                <p class="mb-0">© تم التصميم من خلال <a target="_blank" class="border-bottom" href="https://abdullatifeida.netlify.app/">عبد اللطيف عيدة</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
